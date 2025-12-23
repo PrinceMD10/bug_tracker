@@ -1,153 +1,159 @@
 <?php
 /**
  * Database Configuration
- * 
- * @project BugTracker by GoodStufForDev
- * @description Database connection and helper functions
- * @author [Your Name]
- * @date December 2025
+ *
+ * Project: BugTracker
+ * Description: Database connection and common helper functions
+ * Author: PrinceMD10
+ * Date: December 2025
  */
 
-// Start session for user authentication
-session_start();
+/**
+ * Start session only if not already started
+ */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Database configuration constants
+/**
+ * Database configuration
+ */
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'bug_tracker');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
 /**
- * PDO Database Connection
- * Using prepared statements to prevent SQL injection
+ * PDO database connection
  */
 try {
     $pdo = new PDO(
-        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
         DB_USER,
         DB_PASS,
         [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
+            PDO::ATTR_EMULATE_PREPARES   => false,
         ]
     );
 } catch (PDOException $e) {
-    // Log error and show user-friendly message
-    error_log("Database connection failed: " . $e->getMessage());
-    die("Connection error. Please try again later.");
+    // Log technical error
+    error_log('[Database error] ' . $e->getMessage());
+
+    // Display generic message to user
+    die('Connection error. Please try again later.');
 }
+
+/* ======================================================
+   Helper functions
+   ====================================================== */
 
 /**
  * Check if user is logged in
- * @return bool
  */
-function isLoggedIn() {
+function isLoggedIn(): bool
+{
     return isset($_SESSION['user_id']);
 }
 
 /**
- * Redirect to another page
- * @param string $page Target page
+ * Redirect to a page
  */
-function redirect($page) {
-    header("Location: $page");
-    exit();
+function redirect(string $page): void
+{
+    header('Location: ' . $page);
+    exit;
 }
 
 /**
- * Set flash message in session
- * @param string $message Message content
- * @param string $type Message type (success|error)
+ * Set flash message
  */
-function flashMessage($message, $type = 'success') {
+function setFlash(string $message, string $type = 'success'): void
+{
     $_SESSION['flash_message'] = $message;
     $_SESSION['flash_type'] = $type;
 }
 
 /**
- * Display and clear flash message
+ * Display flash message
  */
-function displayFlash() {
-    if (isset($_SESSION['flash_message'])) {
+function displayFlash(): void
+{
+    if (!empty($_SESSION['flash_message'])) {
         $type = $_SESSION['flash_type'] ?? 'success';
-        $class = $type === 'success' ? 'success' : 'error';
-        echo "<div class='alert alert-{$class}'>{$_SESSION['flash_message']}</div>";
+        echo '<div class="alert alert-' . htmlspecialchars($type) . '">';
+        echo htmlspecialchars($_SESSION['flash_message']);
+        echo '</div>';
+
         unset($_SESSION['flash_message'], $_SESSION['flash_type']);
     }
 }
 
 /**
- * Get priority label from numeric value
- * @param int $priority Priority value (0, 1, 2)
- * @return string Priority label
+ * Sanitize input
  */
-function getPriorityLabel($priority) {
-    $labels = [
-        0 => 'Low',
-        1 => 'Standard',
-        2 => 'High'
-    ];
-    return $labels[$priority] ?? 'Standard';
+function sanitize(string $value): string
+{
+    return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
 }
 
 /**
- * Get status label from numeric value
- * @param int $status Status value (0, 1, 2)
- * @return string Status label
+ * Validate email
  */
-function getStatusLabel($status) {
-    $labels = [
-        0 => 'Open',
-        1 => 'In Progress',
-        2 => 'Closed'
-    ];
-    return $labels[$status] ?? 'Open';
-}
-
-/**
- * Get CSS class for priority badge
- * @param int $priority Priority value
- * @return string CSS class name
- */
-function getPriorityClass($priority) {
-    $classes = [
-        0 => 'low',
-        1 => 'standard',
-        2 => 'high'
-    ];
-    return $classes[$priority] ?? 'standard';
-}
-
-/**
- * Get CSS class for status badge
- * @param int $status Status value
- * @return string CSS class name
- */
-function getStatusClass($status) {
-    $classes = [
-        0 => 'open',
-        1 => 'progress',
-        2 => 'closed'
-    ];
-    return $classes[$status] ?? 'open';
-}
-
-/**
- * Sanitize user input
- * @param string $data Input data
- * @return string Sanitized data
- */
-function sanitize($data) {
-    return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
-}
-
-/**
- * Validate email format
- * @param string $email Email address
- * @return bool
- */
-function isValidEmail($email) {
+function isValidEmail(string $email): bool
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
-?>
+
+/**
+ * Priority label
+ */
+function getPriorityLabel(int $priority): string
+{
+    return match ($priority) {
+        0 => 'Low',
+        1 => 'Standard',
+        2 => 'High',
+        default => 'Standard',
+    };
+}
+
+/**
+ * Status label
+ */
+function getStatusLabel(int $status): string
+{
+    return match ($status) {
+        0 => 'Open',
+        1 => 'In Progress',
+        2 => 'Closed',
+        default => 'Open',
+    };
+}
+
+/**
+ * Priority CSS class
+ */
+function getPriorityClass(int $priority): string
+{
+    return match ($priority) {
+        0 => 'low',
+        1 => 'standard',
+        2 => 'high',
+        default => 'standard',
+    };
+}
+
+/**
+ * Status CSS class
+ */
+function getStatusClass(int $status): string
+{
+    return match ($status) {
+        0 => 'open',
+        1 => 'progress',
+        2 => 'closed',
+        default => 'open',
+    };
+}
