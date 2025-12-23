@@ -8,7 +8,7 @@
  * @date December 2025
  */
 
-require_once 'config/database.php';
+require_once __DIR__ . '/../app/config/database.php';
 
 // Check authentication
 if (!isLoggedIn()) {
