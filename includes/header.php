@@ -22,15 +22,15 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="index.php">
-                    <span class="logo-icon">🐛</span>
+                    <span class="logo-icon">🐞</span>
                     <span class="logo-text">BugTracker</span>
                 </a>
-                <span class="company-tag">by GoodStufForDev</span>
+                <span class="company-tag">by GoodStuf_PrinceMD</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.php" class="nav-link">Dashboard</a></li>
                 <li class="user-info">
-                    <span class="user-icon">👤</span>
+                    <span class="user-icon">🧑‍💼</span>
                     <span class="user-name"><?php echo htmlspecialchars($_SESSION['user_name']); ?></span>
                 </li>
                 <li><a href="logout.php" class="btn-logout">Logout</a></li>
