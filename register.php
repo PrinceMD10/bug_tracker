@@ -2,9 +2,9 @@
 /**
  * Register Page (Subscribe)
  * 
- * @project BugTracker by GoodStufForDev
+ * @project BugTracker by GoodStufPrinceMD
  * @description User registration page
- * @author [Your Name]
+ * @author PrinceMD
  * @date December 2025
  */
 

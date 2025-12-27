@@ -2,9 +2,9 @@
 /**
  * Bug Details Page
  * 
- * @project BugTracker by GoodStufForDev
+ * @project BugTracker by GoodStufPrinceMD
  * @description View and edit ticket details
- * @author [Your Name]
+ * @author PrinceMD
  * @date December 2025
  */
 

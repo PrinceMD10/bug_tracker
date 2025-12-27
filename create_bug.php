@@ -2,9 +2,9 @@
 /**
  * Create Bug Page
  * 
- * @project BugTracker by GoodStufForDev
+ * @project BugTracker by GoodStufPrinceMD
  * @description Create new ticket form
- * @author [Your Name]
+ * @author PrinceMD
  * @date December 2025
  */
 

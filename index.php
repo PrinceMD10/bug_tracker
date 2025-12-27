@@ -3,9 +3,9 @@
 /**
  * Dashboard Page - Bug List
  * 
- * @project BugTracker by GoodStufForDev
+ * @project BugTracker by GoodStufPrinceMD
  * @description Main dashboard with ticket list
- * @author [Your Name]
+ * @author PrinceMD
  * @date December 2025
  */
 

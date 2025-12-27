@@ -2,9 +2,9 @@
 /**
  * Login Page
  * 
- * @project BugTracker by GoodStufForDev
+ * @project BugTracker by GoodStufPrinceMD
  * @description User authentication page
- * @author [Your Name]
+ * @author PrinceMD
  * @date December 2025
  */
 
