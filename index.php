@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Dashboard Page - Bug List
  * 
@@ -8,7 +9,7 @@
  * @date December 2025
  */
 
-require_once __DIR__ . '/../app/config/database.php';
+require_once 'config/database.php';
 
 // Check authentication
 if (!isLoggedIn()) {
