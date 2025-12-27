@@ -98,8 +98,8 @@ include 'includes/header.php';
         
         <div class="auth-demo">
             <h3>Test Account:</h3>
-            <p><strong>Email:</strong> admin@bugtracker.com</p>
-            <p><strong>Password:</strong> 123456</p>
+            <p><strong>Email:</strong> prince@bugtracker.com</p>
+            <p><strong>Password:</strong> 111111</p>
         </div>
     </div>
 </div>
