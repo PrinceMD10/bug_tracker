@@ -73,7 +73,7 @@ include 'includes/header.php';
                     id="email" 
                     name="email" 
                     required 
-                    placeholder="admin@bugtracker.com"
+                    placeholder="prince@bugtracker.com"
                     value="<?php echo htmlspecialchars($email ?? ''); ?>"
                     autocomplete="email">
             </div>
