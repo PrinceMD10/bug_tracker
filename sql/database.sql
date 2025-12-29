@@ -40,9 +40,10 @@ INSERT INTO categories (title) VALUES
 ('Infrastructure');
 
 -- Insert default admin user
--- Password: 123456
+-- Password: 111111
 INSERT INTO users (name, email, password) VALUES
-('Admin User', 'admin@bugtracker.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+('Admin User', 'prince@bugtracker.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
 
 -- Insert sample tickets (10 tickets with different statuses)
 INSERT INTO tickets (title, category_id, priority, status, created_by, assigned_to, created_at, resolved_at) VALUES
